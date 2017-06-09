@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+  function selectAll(tmp){
+	 var likes = document.getElementsByName("userlikes"); 
+	 for(var i=0;i<likes.length;i++){
+		likes[i].checked=tmp; //true,false 
+	 }
+  }
+
+  var bjs=new Array();
+  bjs['XU702']=["小胡","小张","小赵","小陈","小王","小李"];
+  bjs['XU703']=["大胡","大张","大赵","大陈","大王","大李"];
+  bjs['XU704']=["胡四","张四","赵四","陈四","王四","李四"];
+  bjs['XU705']=["胡五","张五","赵五","陈五","王五","李五"];
+  
+  function selectBanji(){
+	  var banji = document.getElementById("banji").value;
+	  var stu = document.getElementById("stu");
+	  //设置下拉框的选项个数为0;
+	  stu.options.length=0;
+	  if(banji!=""){
+		  var sss = bjs[banji];//获得班级对应的学生数组
+		  for(var i=0;i<sss.length;i++){
+			  var op =new Option();
+			  op.value=sss[i];
+			  op.text=sss[i];
+			  stu.add(op);
+		  }
+	  }
+  }
+  function huitu(){
+	 var cxt = document.getElementById("tu").getContext("2d");
+	 cxt.fillStyle="#FF0000";
+     cxt.fillRect(0,0,300,200);
+	 var grd=cxt.createLinearGradient(0,0,175,50);
+		grd.addColorStop(0,"#FF0000");
+		grd.addColorStop(1,"#00FF00");
+		cxt.fillStyle=grd;
+		cxt.fillRect(0,0,175,50);
+  }
+  function addrow(){
+	 var tb = document.getElementById("tb"); 
+	 var tr = tb.insertRow();
+	 tr.insertCell();
+	 tr.cells[0].innerText="aaa";
+	 tr.insertCell();
+	 tr.cells[1].innerHTML="bbb";
+	 tr.insertCell();
+	 tr.cells[2].innerHTML="<a href=''>cccc</a>";
+	 tr.insertCell();
+	 tr.cells[3].innerHTML="iii";
+	 
+	 
+  }
+</script>
+</head>
+
+<body>
+<form action="" method="">
+   爱好：<input type="checkbox" name="userlikes" value="运动"/>运动
+   <input type="checkbox" name="userlikes" value="音乐"/>音乐
+   <input type="checkbox" name="userlikes" value="旅游"/>旅游
+   <input type="checkbox" name="userlikes" value="电影"/>电影
+   <input type="button" value="全选" onClick="selectAll(true)"/>
+   <input type="button" value="全不选" onClick="selectAll(false)"/>
+   
+   <br/>
+   <select name="banji" id="banji" onChange="selectBanji()">
+      <option value="">请选择</option>
+      <option value="XU702">XU702</option>
+      <option value="XU703">XU703</option>
+      <option value="XU704">XU704</option>
+      <option value="XU705">XU705</option>
+   </select>
+   <select name="stu" id="stu">
+   
+   </select>
+</form>
+<br/>
+<input type="button" value="绘制图形" onClick="huitu()"/>
+<br/>
+<canvas id="tu" style="width:300px;height:200px;"></canvas>
+<br/>
+<input type="button" value="添加一行" onClick="addrow()"/>
+<br/>
+<table id="tb" border="1" height="auto">
+   <tr>
+     <td>1</td>
+     <td>2</td>
+     <td>3</td>
+     <td>4</td>
+   </tr>
+   <tr>
+     <td>11</td>
+     <td>22</td>
+     <td>33</td>
+     <td>44</td>
+   </tr>
+   <tr>
+     <td>13</td>
+     <td>24</td>
+     <td>35</td>
+     <td>46</td>
+   </tr>
+
+</table>
+</body>
+</html>
